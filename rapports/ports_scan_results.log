@@ -1,20 +1,20 @@
-✔️ Aucun changement détecté pour /ETC/PASSWD
-✔️ Aucun changement détecté pour /ETC/SHADOW
-✔️ Aucun changement détecté pour /ETC/HOSTS
-Scan effectué le ven. 21 févr. 2025 18:20:44 CET
+Scan effectué le ven. 21 févr. 2025 18:42:29 CET
 --------------------------------------------------
 dbc2a14dbeb18ae9d1de08523bbceeee65740e051652324e1ae1fff90dff4aca  /etc/passwd
 0fd8d2e041bca53ef848a92e611ac000e431599c1343e7e8384a4b4ec80ef7d6  /etc/shadow
 600de0e4e07367198090a76e710dfe2bda21caa6414f17a4d2f71177cfb0a528  /etc/hosts
+✔️ Aucun changement détecté pour /ETC/PASSWD
+✔️ Aucun changement détecté pour /ETC/SHADOW
+✔️ Aucun changement détecté pour /ETC/HOSTS
 
 Nouvelles données détectées
 
 
-Scan des ports ouverts sur : 192.168.1.4 effectué le 20250221_182000
+Scan des ports ouverts sur : 192.168.1.4 effectué le 20250221_184202
 --------------------------------------------------
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-02-21 18:20 CET
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-02-21 18:42 CET
 Nmap scan report for 192.168.1.4
-Host is up (0.00056s latency).
+Host is up (0.00044s latency).
 Not shown: 998 filtered tcp ports (no-response)
 PORT     STATE SERVICE VERSION
 80/tcp   open  http    Apache httpd 2.4.41 (PHP/7.3.12)
@@ -23,13 +23,13 @@ MAC Address: 4C:D5:77:E4:9F:27 (Chongqing Fugui Electronics)
 Service Info: Host: localhost
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 10.74 seconds
+Nmap done: 1 IP address (1 host up) scanned in 10.86 seconds
 
-Scan des ports ouverts sur 192.168.1.4 effectué le 20250221_181941
+Scan des ports ouverts sur 192.168.1.4 effectué le 20250221_184133
 --------------------------------------------------
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-02-21 18:19 CET
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-02-21 18:41 CET
 Nmap scan report for 192.168.1.4
-Host is up (0.00047s latency).
+Host is up (0.00046s latency).
 Not shown: 998 filtered tcp ports (no-response)
 PORT     STATE SERVICE VERSION
 80/tcp   open  http    Apache httpd 2.4.41 (PHP/7.3.12)
@@ -38,6 +38,6 @@ MAC Address: 4C:D5:77:E4:9F:27 (Chongqing Fugui Electronics)
 Service Info: Host: localhost
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 11.31 seconds
+Nmap done: 1 IP address (1 host up) scanned in 11.34 seconds
 --------------------------------------------------
 
