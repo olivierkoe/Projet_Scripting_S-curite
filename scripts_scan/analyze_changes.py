@@ -1,94 +1,86 @@
-#!/usr/bin/python3
-
+import sys
 import hashlib
-import os
+import json
+import smtplib
+from email.mime.text import MIMEText
 
-# Définir le chemin du fichier log où les résultats des vérifications seront enregistrés
-LOG_FILE = "./rapports/ports_scan_results.log"
+# Fichier pour l'historique des modifications
+HISTORY_FILE = "hash_history.json"
 
-# Vérifier si le dossier "rapports" existe, sinon le créer
-os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
-
-# Fichier contenant la liste des fichiers à surveiller
-MONITORED_FILES = "./config/monitored_files.txt"
-
-def check_file_integrity(file_path):
-    """Calcule le hash SHA256 d'un fichier pour vérifier son intégrité."""
+def load_hashes(file_path):
+    """Charge les hachages depuis un fichier."""
+    hashes = {}
     try:
-        print(f"Vérification du fichier : {file_path}")  # Affiche un message de débogage
-        with open(file_path, 'rb') as f:
-            # Calculer et retourner le hash SHA256 du fichier
-            return hashlib.sha256(f.read()).hexdigest()
-    except FileNotFoundError:
-        # En cas de fichier introuvable, afficher un message d'erreur et retourner None
-        print(f"[!] Fichier introuvable : {file_path}")
-        return None
-
-def load_previous_hashes():
-    """Charge les hachages précédents à partir du fichier log existant."""
-    previous_hashes = {}
-    if os.path.exists(LOG_FILE):
-        # Lire le fichier log pour récupérer les hachages des fichiers précédemment surveillés
-        with open(LOG_FILE, "r") as logs:
-            for line in logs:
+        with open(file_path, "r") as f:
+            for line in f:
                 parts = line.strip().split()
                 if len(parts) == 2:
-                    # Ajouter chaque fichier et son hash dans un dictionnaire
-                    previous_hashes[parts[0]] = parts[1]
-    return previous_hashes
+                    hashes[parts[1]] = parts[0]
+    except FileNotFoundError:
+        pass
+    return hashes
 
-def update_log(new_hashes, previous_hashes):
-    """Met à jour le fichier log avec les nouveaux hachages et les modifications détectées."""
-    # Créer un fichier temporaire pour y écrire les nouvelles informations
-    temp_file = LOG_FILE + ".tmp"
+def send_alert(changes):
+    """Envoie un email en cas de modifications détectées."""
+    sender_email = "alert@example.com"
+    recipient_email = "admin@example.com"
+    subject = "Alerte : Fichiers sensibles modifiés !"
+    body = "Les fichiers suivants ont été modifiés :\n\n" + "\n".join(changes)
+
+    msg = MIMEText(body)
+    msg["Subject"] = subject
+    msg["From"] = sender_email
+    msg["To"] = recipient_email
+
+    try:
+        with smtplib.SMTP("smtp.example.com", 587) as server:
+            server.starttls()
+            server.login("alert@example.com", "password")
+            server.sendmail(sender_email, recipient_email, msg.as_string())
+        print("[✔] Alerte email envoyée !")
+    except Exception as e:
+        print(f"[✖] Échec de l'envoi de l'email : {e}")
+
+def save_history(history):
+    """Sauvegarde l'historique des modifications dans un fichier JSON."""
+    with open(HISTORY_FILE, "w") as f:
+        json.dump(history, f, indent=4)
+
+def main():
+    if len(sys.argv) != 3:
+        print("Usage: python3 analyze_changes.py <old_hash_file> <new_hash_file>")
+        sys.exit(1)
+
+    old_hashes = load_hashes(sys.argv[1])
+    new_hashes = load_hashes(sys.argv[2])
     
-    with open(temp_file, "w") as log:
-        # Ajouter les nouvelles informations en début de fichier
-        for file, new_hash in new_hashes.items():
-            old_hash = previous_hashes.get(file)
-            if old_hash and old_hash != new_hash:
-                # Si le fichier a changé, signaler le changement et l'ajouter au log
-                print(f"Changement détecté dans {file} !")
-                log.write(f"Changement détecté dans {file.upper()} : {new_hash.upper()}\n")
-            else:
-                # Si le fichier n'a pas changé, l'indiquer clairement
-                log.write(f"Aucun changement détecté pour {file.upper()}\n")
-        
-        # Ajouter le reste du fichier log d'origine sans modifications
-        if os.path.exists(LOG_FILE):
-            with open(LOG_FILE, "r") as old_log:
-                log.write(old_log.read())
+    changes = []
 
-    # Remplacer le fichier log par le fichier temporaire mis à jour
-    os.replace(temp_file, LOG_FILE)
+    for file, new_hash in new_hashes.items():
+        old_hash = old_hashes.get(file)
+        if old_hash and old_hash != new_hash:
+            changes.append(file)
 
-def analyze_changes():
-    """Compare les hachages actuels avec ceux enregistrés et met à jour le log en conséquence."""
-    print("Début de l'analyse des fichiers...")  # Affiche un message de débogage
-    previous_hashes = load_previous_hashes()  # Charger les hachages précédents
-    new_hashes = {}
+    if changes:
+        print("[⚠] Modifications détectées :")
+        for change in changes:
+            print(f" - {change}")
 
-    # Vérifier si le fichier contenant la liste des fichiers à surveiller existe
-    if not os.path.exists(MONITORED_FILES):
-        print(f"Le fichier {MONITORED_FILES} est introuvable.")  # Message d'erreur si le fichier est manquant
-        return
+        send_alert(changes)
 
-    # Lire la liste des fichiers à surveiller et vérifier leur intégrité
-    with open(MONITORED_FILES, "r") as f:
-        for file in f:
-            file = file.strip()  # Retirer les espaces ou nouvelles lignes
-            if file:
-                print(f"Vérification de {file}...")  # Afficher un message pour chaque fichier vérifié
-                new_hash = check_file_integrity(file)  # Vérifier l'intégrité du fichier
-                if new_hash:
-                    new_hashes[file] = new_hash  # Ajouter le nouveau hash au dictionnaire
+        # Charger l'historique précédent
+        try:
+            with open(HISTORY_FILE, "r") as f:
+                history = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            history = {}
 
-    if not new_hashes:
-        print("Aucun changement détecté.")  # Avertir si aucun fichier n'a été modifié
+        for change in changes:
+            history[change] = new_hashes[change]
 
-    # Mettre à jour le fichier log avec les nouveaux résultats
-    update_log(new_hashes, previous_hashes)
+        save_history(history)
+    else:
+        print("[✔] Aucun changement détecté.")
 
 if __name__ == "__main__":
-    # Lancer l'analyse des changements
-    analyze_changes()
+    main()
