@@ -48,11 +48,11 @@ def update_log(new_hashes, previous_hashes):
             old_hash = previous_hashes.get(file)
             if old_hash and old_hash != new_hash:
                 # Si le fichier a changé, signaler le changement et l'ajouter au log
-                print(f"⚠️ Changement détecté dans {file} !")
-                log.write(f"⚠️ Changement détecté dans {file.upper()} : {new_hash.upper()}\n")
+                print(f"Changement détecté dans {file} !")
+                log.write(f"Changement détecté dans {file.upper()} : {new_hash.upper()}\n")
             else:
                 # Si le fichier n'a pas changé, l'indiquer clairement
-                log.write(f"✔️ Aucun changement détecté pour {file.upper()}\n")
+                log.write(f"Aucun changement détecté pour {file.upper()}\n")
         
         # Ajouter le reste du fichier log d'origine sans modifications
         if os.path.exists(LOG_FILE):
@@ -70,7 +70,7 @@ def analyze_changes():
 
     # Vérifier si le fichier contenant la liste des fichiers à surveiller existe
     if not os.path.exists(MONITORED_FILES):
-        print(f"[!] Le fichier {MONITORED_FILES} est introuvable.")  # Message d'erreur si le fichier est manquant
+        print(f"Le fichier {MONITORED_FILES} est introuvable.")  # Message d'erreur si le fichier est manquant
         return
 
     # Lire la liste des fichiers à surveiller et vérifier leur intégrité
@@ -84,7 +84,7 @@ def analyze_changes():
                     new_hashes[file] = new_hash  # Ajouter le nouveau hash au dictionnaire
 
     if not new_hashes:
-        print("[!] Aucun changement détecté.")  # Avertir si aucun fichier n'a été modifié
+        print("Aucun changement détecté.")  # Avertir si aucun fichier n'a été modifié
 
     # Mettre à jour le fichier log avec les nouveaux résultats
     update_log(new_hashes, previous_hashes)

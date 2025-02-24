@@ -4,6 +4,7 @@ import sys
 import subprocess
 import datetime
 import os
+import re
 
 # Vérifier si une adresse IP ou un domaine est fourni
 if len(sys.argv) < 2:
@@ -42,8 +43,15 @@ try:
     else:
         existing_content = ""  # Si le fichier n'existe pas encore, on commence avec du vide
 
-    # Comparer les nouvelles données avec les anciennes
-    if result.stdout.strip() in existing_content:
+    # Exclure l'horodatage de la comparaison
+    def remove_timestamp(text):
+        return re.sub(r"Scan des ports ouverts sur : .+ effectué le \d{8}_\d{6}\n", "", text)
+
+    # Comparer les nouvelles données avec les anciennes sans les dates
+    clean_result = remove_timestamp(result.stdout.strip())
+    clean_existing_content = remove_timestamp(existing_content.strip())
+
+    if clean_result == clean_existing_content:
         # Si les données sont inchangées, ajouter "données inchangées" au début du fichier
         header = "\nDonnées inchangées\n" + header
     else:

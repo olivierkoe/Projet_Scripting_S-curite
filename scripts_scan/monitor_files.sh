@@ -13,6 +13,7 @@ LOG_FILE="rapports/ports_scan_results.log"
         if [ -f "$FILE" ]; then
             # Calculer le hash SHA256 du fichier et l'ajouter au début du fichier log
             sha256sum "$FILE"
+            echo ""
         fi
     done
 
