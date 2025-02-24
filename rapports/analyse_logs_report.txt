@@ -1,3 +1,7 @@
 📌 Rapport des tentatives de connexion échouées 📌
 ==================================================
+<<<<<<< HEAD
 ✅ Aucun échec de connexion détecté.
+=======
+🔴 ::1 - 7 tentatives échouées
+>>>>>>> 8a07321 (commit_nabiyav1)
