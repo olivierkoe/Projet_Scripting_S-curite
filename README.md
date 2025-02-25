@@ -98,7 +98,7 @@ Gestionnaire de mots de passe
 2. Récupérer un mot de passe  
 ➡️ Choisissez une option : 
 
-Exemple d'utilisation : 
+Exemple d'utilisation :  
 🌐 Site : gmail.com  
 👤 Identifiant : monemail@gmail.com  
 🔒 Mot de passe : MonSuperMotDePasse123!  
