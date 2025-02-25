@@ -236,11 +236,18 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 🔧 Script utilisé : password_manager.py
 ⚡ Exécution : Utilise python3.
 
-📌 En résumé :
-🕒 Heure	📌 Tâche
-00:02		Scan des ports sur 192.168.1.1
-08:30		Analyse des scans pour détecter des anomalies
-08:30		Analyse des logs pour repérer des attaques
-08:30		Surveillance des logs en temps réel
-09:30		Sauvegarde des mots de passe
+📌 En résumé :  
+
+🕒 Heure	📌 Tâche  
+
+00:02		Scan des ports sur 192.168.1.1  
+
+08:30		Analyse des scans pour détecter des anomalies  
+
+08:30		Analyse des logs pour repérer des attaques  
+
+08:30		Surveillance des logs en temps réel  
+
+09:30		Sauvegarde des mots de passe  
+
 09:30		Gestion des mots de passe
