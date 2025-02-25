@@ -174,13 +174,13 @@ python3 scripts_scan/analyse_scan.py
 
 Une autre tâche de sécurité consiste à analyser les fichiers de log pour identifier les signes d'une intrusion ou d'une tentative d'accès non autorisé. Le script suivant analyse les fichiers /var/log/auth.log et /var/log/syslog à la recherche de tentatives de connexion échouées.
 
-* * * * * commande
+* * * * * commande  
 │ │ │ │ │
-│ │ │ │ └── Jour de la semaine (0-7, où 0 et 7 = Dimanche)
-│ │ │ └──── Mois (1-12)
-│ │ └────── Jour du mois (1-31)
-│ └──────── Heure (0-23)
-└────────── Minute (0-59)
+│ │ │ │ └── Jour de la semaine (0-7, où 0 et 7 = Dimanche)  
+│ │ │ └──── Mois (1-12)  
+│ │ └────── Jour du mois (1-31)  
+│ └──────── Heure (0-23)  
+└────────── Minute (0-59)  
 
 1️⃣ Scan des ports
 
