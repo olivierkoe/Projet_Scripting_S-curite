@@ -106,7 +106,7 @@ Exemple d'utilisation :
 Résultat → Le mot de passe est chiffré et stocké dans scripts_pwd/secrets/passwords.enc
 
 
-#3 Développement du `backup_passwords.sh`**
+#3 Développement du `backup_passwords.sh`**  
 Objectif : Automatiser la sauvegarde des mots de passe pour éviter toute perte de données.
 
 **Commande pour exécuter la sauvegarde manuellement :**
@@ -170,7 +170,7 @@ python3 scripts_scan/analyse_scan.py
  - Les résultats sont stockés dans rapports/.
 
 ## D. Analyser les Logs pour Détecter les Intrusions
-**Réalisé par :** *Nabiya & Olivier*
+**Réalisé par :** *Olivier*
 
 Une autre tâche de sécurité consiste à analyser les fichiers de log pour identifier les signes d'une intrusion ou d'une tentative d'accès non autorisé. Le script suivant analyse les fichiers /var/log/auth.log et /var/log/syslog à la recherche de tentatives de connexion échouées.  
 
