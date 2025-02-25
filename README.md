@@ -221,9 +221,9 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 
 1️⃣ Scan des ports  
 
-2 0 * * * bash ~/Projet_Scripting_Securite/scripts_scan/scan_ports.sh 192.168.1.1  
+0 2 * * * bash ~/Projet_Scripting_Securite/scripts_scan/scan_ports.sh 192.168.1.1  
 
-🕒 Exécuté tous les jours à 00h02 (minuit + 2 minutes)  
+🕒 Exécuté tous les jours à 02h00   
 📌 Objectif : Lancer un script de scan des ports sur l'adresse 192.168.1.1 pour identifier les ports ouverts sur ce réseau.  
 🔧 Script utilisé : scan_ports.sh  
 ⚡ Exécution : Utilise bash pour exécuter le script.  
@@ -248,27 +248,27 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 
 4️⃣ Surveillance des logs en temps réel  
 
-30 8 * * * bash ~/Projet_Scripting_Securite/scripts_logs/surveillance_logs.sh  
+0 2 * * * bash ~/Projet_Scripting_Securite/scripts_logs/surveillance_logs.sh  
 
-🕒 Exécuté tous les jours à 08h30  
+🕒 Exécuté tous les jours à 02h00  
 📌 Objectif : Lancer un processus de surveillance continue des logs pour détecter en temps réel des événements de sécurité (échecs de connexion, attaques brute-force, etc.).  
 🔧 Script utilisé : surveillance_logs.sh  
 ⚡ Exécution : Utilise bash.  
 
 5️⃣ Sauvegarde des mots de passe  
 
-30 9 * * * bash ~/Projet_Scripting_Securite/scripts_pwd/backup-passwords.sh  
+0 2 * * * bash ~/Projet_Scripting_Securite/scripts_pwd/backup-passwords.sh  
 
-🕒 Exécuté tous les jours à 09h30  
+🕒 Exécuté tous les jours à 02h00  
 📌 Objectif : Sauvegarder une base de données ou un fichier contenant les mots de passe stockés de manière sécurisée.  
 🔧 Script utilisé : backup-passwords.sh  
 ⚡ Exécution : Utilise bash.  
 
 6️⃣ Gestionnaire de mots de passe  
 
-30 9 * * * python3 ~/Projet_Scripting_Securite/scripts_pwd/password_manager.py  
+30 8 * * * python3 ~/Projet_Scripting_Securite/scripts_pwd/password_manager.py  
 
-🕒 Exécuté tous les jours à 09h30  
+🕒 Exécuté tous les jours à 08h30  
 📌 Objectif : Vérifier, gérer ou mettre à jour les mots de passe enregistrés. Il peut inclure des alertes pour des mots de passe faibles ou compromis.  
 🔧 Script utilisé : password_manager.py  
 ⚡ Exécution : Utilise python3.  
@@ -277,7 +277,7 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 
 🕒 Heure    📌 Tâche   
 
-00:02       Scan des ports sur 192.168.1.1  
+02:00       Scan des ports sur 192.168.1.1  
 
 08:30       Analyse des scans pour détecter des anomalies  
 
@@ -285,9 +285,9 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 
 08:30       Surveillance des logs en temps réel  
 
-09:30       Sauvegarde des mots de passe  
+02:00       Sauvegarde des mots de passe  
 
-09:30       Gestion des mots de passe
+08:30       Gestion des mots de passe
 
 
 
