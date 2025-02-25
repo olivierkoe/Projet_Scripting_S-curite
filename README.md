@@ -77,6 +77,12 @@ python -m venv venv
 source venv/bin/activate  # Activation du venv  
 
 
+
+Exemple d'utilisation :  
+🌐 Site : gmail.com  
+👤 Identifiant : monemail@gmail.com  
+🔒 Mot de passe : MonSuperMotDePasse123!  
+
 Ensuite, nous avns installer les dépendances du projet : 
 
 pip install -r requirements.txt 
