@@ -1,0 +1,3 @@
+📌 Rapport des tentatives de connexion échouées 📌
+==================================================
+✅ Aucun échec de connexion détecté.
