@@ -8,15 +8,15 @@
 ---
 
 ## 📖 **Organisation du projet**
-📌 **Objectif** : Automatiser des tâches de sécurité avec **Python et Bash**.  
-📌 **Répartition des tâches** :
+📌 **Objectif** : Automatiser des tâches de sécurité avec **Python et Bash**.    
+📌 **Répartition des tâches** :  
 
--  **Partie A** → *Surveillance des fichiers sensibles* **(Olivier)**
--  **Partie B** → *Gestionnaire de mots de passe sécurisé* **(Nabiya) ✅ Réalisé**
--  **Partie C** → *Détection des ports et services vulnérables* **(Réalisé ensemble ✅)**
--  **Partie D** → *Automatisation de la gestion des utilisateurs et de la sécurité des mots de passe* **(Olivier)** 
--  **Partie E** → *Script de surveillance des logs de sécurité (auth.log)* **(Nabiya)**
--  **Partie F** → *Automatisation des mises à jour de sécurité* **(réalisé ensemble)**
+-  **Partie A** → *Surveillance des fichiers sensibles* **(Olivier)**  
+-  **Partie B** → *Gestionnaire de mots de passe sécurisé* **(Nabiya) ✅ Réalisé**  
+-  **Partie C** → *Détection des ports et services vulnérables* **(Réalisé ensemble ✅)**  
+-  **Partie D** → *Automatisation de la gestion des utilisateurs et de la sécurité des mots de passe* **(Olivier)**   
+-  **Partie E** → *Script de surveillance des logs de sécurité (auth.log)* **(Nabiya)**  
+-  **Partie F** → *Automatisation des mises à jour de sécurité* **(réalisé ensemble)**  
 
 ---
 
@@ -30,42 +30,42 @@ Pour isoler les dépendances du projet, nous avons créé un **environnement vir
 
 📌 **Création de l'environnement virtuel :**
 
-python3 -m venv venv
+python3 -m venv venv  
 
-- Activation de l’environnement virtuel : source venv/bin/activate
+- Activation de l’environnement virtuel : source venv/bin/activate  
 
-- Installation des dépendances requises : pip install -r requirements.txt
+- Installation des dépendances requises : pip install -r requirements.txt  
 
-- Désactiver l’environnement virtuel quand on a fini de travailler : deactivate
+- Désactiver l’environnement virtuel quand on a fini de travailler : deactivate  
  
-_ Pour réactiver venv plus tard : source venv/bin/activate
+_ Pour réactiver venv plus tard : source venv/bin/activate  
 
 
 
-##Créer le repertoire distant sur GitHub
+##Créer le repertoire distant sur GitHub  
 
-Inviter les contributeurs et notre référent
+Inviter les contributeurs et notre référent  
 
-#Créer le fichier README.md
+#Créer le fichier README.md  
 
-touch README.md
+touch README.md  
 
-#Se connecter et cloner le dépot distant sur les machines des contributeurs :
+#Se connecter et cloner le dépot distant sur les machines des contributeurs :  
 
-git clone https://github.com/ton-pseudo/Projet_Scripting_Securite.git
+git clone https://github.com/ton-pseudo/Projet_Scripting_Securite.git  
 
 
 
-##Créer les  dossiers : 
+##Créer les  dossiers :   
 
-mkdir scripts_pwd scripts_scan docs rapports
+mkdir scripts_pwd scripts_scan docs rapports  
 
-Explication :
+Explication :  
 
-📁 scripts_pwd/ → Gestion et sauvegarde des mots de passe.
-📁 scripts_scan/ → Scan et analyse des ports/services ouverts.
-📁 docs/ → Documentation et fichiers annexes.
-📁 rapports/ → Stockage des résultats des analyses.
+📁 scripts_pwd/ → Gestion et sauvegarde des mots de passe.  
+📁 scripts_scan/ → Scan et analyse des ports/services ouverts.  
+📁 docs/ → Documentation et fichiers annexes.  
+📁 rapports/ → Stockage des résultats des analyses.  
 
 
 
@@ -74,34 +74,34 @@ Explication :
 ---
 
 #1 Création des fichiers**
-Dans cette partie, nous avons mis en place un **gestionnaire de mots de passe sécurisé**, en utilisant **Python pour la gestion et Bash pour l’automatisation**.
+Dans cette partie, nous avons mis en place un **gestionnaire de mots de passe sécurisé**, en utilisant **Python pour la gestion et Bash pour l’automatisation**.  
 
  **Fichiers créés :**
-- `scripts_pwd/password_manager.py` → *Gestion et chiffrement des mots de passe (Python).*
-- `scripts_pwd/backup_passwords.sh` → *Automatisation de la sauvegarde des mots de passe (Bash).*
+- `scripts_pwd/password_manager.py` → *Gestion et chiffrement des mots de passe (Python).*  
+- `scripts_pwd/backup_passwords.sh` → *Automatisation de la sauvegarde des mots de passe (Bash).*  
 
 ---
 
 #2 Développement du `password_manager.py`**
-Ce script permet **d’ajouter et de récupérer des mots de passe** tout en les chiffrant.  
-Chiffrement des mots de passe avec cryptography
+Ce script permet **d’ajouter et de récupérer des mots de passe** tout en les chiffrant.   
+Chiffrement des mots de passe avec cryptography  
 
- **Commande pour exécuter le gestionnaire :**
+ **Commande pour exécuter le gestionnaire :**  
 
-python3 scripts_pwd/password_manager.py
+python3 scripts_pwd/password_manager.py  
 
-Lorsqu’on lance ce script, un menu interactif apparaît :
+Lorsqu’on lance ce script, un menu interactif apparaît :  
 
-Gestionnaire de mots de passe
-1. Ajouter un mot de passe
+Gestionnaire de mots de passe  
+1. Ajouter un mot de passe  
 
-2. Récupérer un mot de passe
+2. Récupérer un mot de passe  
 ➡️ Choisissez une option : 
 
 Exemple d'utilisation : 
-🌐 Site : gmail.com
-👤 Identifiant : monemail@gmail.com
-🔒 Mot de passe : MonSuperMotDePasse123!
+🌐 Site : gmail.com  
+👤 Identifiant : monemail@gmail.com  
+🔒 Mot de passe : MonSuperMotDePasse123!  
 
 Résultat → Le mot de passe est chiffré et stocké dans scripts_pwd/secrets/passwords.enc
 
