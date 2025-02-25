@@ -1,3 +1,4 @@
+
 # Projet Scripting Sécurité  
 
 ## Groupe 1 (Nabiya CHERGUI & Olivier KOENIG) 
@@ -48,20 +49,18 @@ Projet_Scripting_S-curite/
 │── requirements.txt                   # Liste des dépendances (Cryptography) 
  ```
 
- 
-
- 
 
 ## 📌 Installation et Configuration 
 
 ## 1️⃣ Installation des dépendances 
 
+
 Sur une machine Linux, exécutez la commande suivante pour installer les outils nécessaires : 
 
 sudo apt update && sudo apt install -y nmap net-tools python3 python3-pip git fail2ban cron hydra 
 
- 
 
+ 
 ## 2️⃣ Clonage du dépôt 
 
 git clone https://github.com/olivierkoe/Projet_Scripting_S-curite.git 
@@ -76,7 +75,7 @@ Nous avons utilisé un environnement virtuel Python (venv) pour isoler les dépe
 
 python -m venv venv 
 source venv/bin/activate  # Activation du venv  
- 
+
 
 Ensuite, nous avns installer les dépendances du projet : 
 
@@ -135,10 +134,6 @@ Dans ce projet, nous avons réparti les tâches de manière **équilibrée et co
 - L'organisation du dépôt GitHub et la mise en place des fichiers README ont été faites ensemble.**  
 - Le PowerPoint a été conçu de manière collaborative,** en intégrant les explications de chaque partie.  
  
-
- 
-
- 
  
 ## Utilisation des scripts 
 
@@ -193,8 +188,6 @@ Les sauvegardes sont stockées dans scripts_pwd/backups/.
 
 Surveillance en temps réel des échecs de connexion : 
 
- 
-
 ./scripts_logs/surveillance_logs.sh 
  
 
@@ -217,9 +210,7 @@ crontab -e
 Ajoutez cette ligne pour une sauvegarde automatique des mots de passe chaque jour à 3h du matin : 
 
 0 3 * * * /bin/bash /chemin/vers/scripts_pwd/backup_passwords.sh 
- 
 
- 
 
 ## Conclusion 
 
@@ -236,3 +227,5 @@ Détecter les intrusions et attaques potentielles.
 - Ajouter un système d’alerte en cas de détection d’attaque. 
 
 - Intégrer une notification par email pour certaines alertes. 
+
+
