@@ -1,13 +1,13 @@
-# 🛡️ Projet Scripting Sécurité
+# 🛡️ Projet Scripting Sécurité  
 
-## 📌 **Groupe 1**
-👥 **Membres du projet :**  
-- 🏆 **Olivier KOENIG**
-- 🏆 **Nabiya CHERGUI**
+## 📌 **Groupe 1**  
+👥 **Membres du projet :**    
+- 🏆 **Olivier KOENIG**  
+- 🏆 **Nabiya CHERGUI**  
 
 ---
 
-## 📖 **Organisation du projet**
+## 📖 **Organisation du projet**  
 📌 **Objectif** : Automatiser des tâches de sécurité avec **Python et Bash**.    
 📌 **Répartition des tâches** :  
 
@@ -20,15 +20,15 @@
 
 ---
 
-## ⚙️ **Guide d’installation**
-	**Installation des outils nécessaires :**
+## ⚙️ **Guide d’installation**  
+	**Installation des outils nécessaires :**  
 
 sudo apt update && sudo apt install -y nmap net-tools python3 python3-pip git cron hydra fail2ban 
 
-	**Mise en place de l'environnement virtuel (`venv`)**
-Pour isoler les dépendances du projet, nous avons créé un **environnement virtuel Python (`venv`)**.
+	**Mise en place de l'environnement virtuel (`venv`)**  
+Pour isoler les dépendances du projet, nous avons créé un **environnement virtuel Python (`venv`)**.  
 
-📌 **Création de l'environnement virtuel :**
+📌 **Création de l'environnement virtuel :**  
 
 python3 -m venv venv  
 
@@ -70,19 +70,19 @@ Explication :
 
 
 ## Partie B - Outil de gestion des mots de passe**  
-**Réalisé par :** *Nabiya*
+**Réalisé par :** *Nabiya*  
 ---
 
-#1 Création des fichiers**
+#1 Création des fichiers**  
 Dans cette partie, nous avons mis en place un **gestionnaire de mots de passe sécurisé**, en utilisant **Python pour la gestion et Bash pour l’automatisation**.  
 
- **Fichiers créés :**
+ **Fichiers créés :**  
 - `scripts_pwd/password_manager.py` → *Gestion et chiffrement des mots de passe (Python).*  
 - `scripts_pwd/backup_passwords.sh` → *Automatisation de la sauvegarde des mots de passe (Bash).*  
 
 ---
 
-#2 Développement du `password_manager.py`**
+#2 Développement du `password_manager.py`**  
 Ce script permet **d’ajouter et de récupérer des mots de passe** tout en les chiffrant.   
 Chiffrement des mots de passe avec cryptography  
 
@@ -103,74 +103,74 @@ Exemple d'utilisation :
 👤 Identifiant : monemail@gmail.com  
 🔒 Mot de passe : MonSuperMotDePasse123!  
 
-Résultat → Le mot de passe est chiffré et stocké dans scripts_pwd/secrets/passwords.enc
+Résultat → Le mot de passe est chiffré et stocké dans scripts_pwd/secrets/passwords.enc  
 
 
 #3 Développement du `backup_passwords.sh`**  
-Objectif : Automatiser la sauvegarde des mots de passe pour éviter toute perte de données.
+Objectif : Automatiser la sauvegarde des mots de passe pour éviter toute perte de données.  
 
-**Commande pour exécuter la sauvegarde manuellement :**
+**Commande pour exécuter la sauvegarde manuellement :**  
 
-bash scripts_pwd/backup_passwords.sh
-
-
-Vérifier si la sauvegarde a bien été faite :
-
-ls -l scripts_pwd/backups/
-
-=> Résultat → Un fichier passwords_backup_xxxx.enc devrait apparaître dans scripts_pwd/backups/.
+bash scripts_pwd/backup_passwords.sh  
 
 
-#4 Automatisation avec cron **
-Objectif : Exécuter automatiquement la sauvegarde des mots de passe chaque jour à 3h du matin.
+Vérifier si la sauvegarde a bien été faite :  
 
-**Commande pour éditer la liste des tâches planifiées : **
+ls -l scripts_pwd/backups/  
 
-crontab -e
-
-Ajoutez cette ligne dans le fichier cron : 0 3 * * * /bin/bash /home/nabs/projet_scripting_securite/Projet_Scripting_S-curite/scripts_pwd/backup_passwords.sh
-
-Vérifier que cron a bien pris en compte la tâche : crontab -l
-
-Résultat → Si la ligne apparaît, la sauvegarde se fera automatiquement tous les jours à 3h du matin.
+=> Résultat → Un fichier passwords_backup_xxxx.enc devrait apparaître dans scripts_pwd/backups/.  
 
 
+#4 Automatisation avec cron **  
+Objectif : Exécuter automatiquement la sauvegarde des mots de passe chaque jour à 3h du matin.  
+
+**Commande pour éditer la liste des tâches planifiées : **  
+
+crontab -e  
+
+Ajoutez cette ligne dans le fichier cron : 0 3 * * * /bin/bash /home/nabs/projet_scripting_securite/Projet_Scripting_S-curite/scripts_pwd/backup_passwords.sh  
+
+Vérifier que cron a bien pris en compte la tâche : crontab -l  
+
+Résultat → Si la ligne apparaît, la sauvegarde se fera automatiquement tous les jours à 3h du matin.  
 
 
 
-## Partie C - Détection des ports et services vulnérables**
-**Réalisé par :** *Nabiya & Olivier*
-
-#Création des scripts
- Les fichiers créés :
-
- scripts_scan/scan_ports.sh (Bash - Scan des ports avec nmap)
- scripts_scan/analyse_scan.py (Python - Analyse des résultats)
 
 
-#Rendre les scripts exécutables
+## Partie C - Détection des ports et services vulnérables**  
+**Réalisé par :** *Nabiya & Olivier*  
 
-chmod +x scripts_scan/scan_ports.sh
-chmod +x scripts_scan/analyse_scan.py
+#Création des scripts  
+ Les fichiers créés :  
+
+ scripts_scan/scan_ports.sh (Bash - Scan des ports avec nmap)  
+ scripts_scan/analyse_scan.py (Python - Analyse des résultats)  
 
 
-#Exécuter les scans
- - Lancer un scan des ports ouverts :
+#Rendre les scripts exécutables  
 
-scripts_scan/scan_ports.sh <adresse_IP>
+chmod +x scripts_scan/scan_ports.sh  
+chmod +x scripts_scan/analyse_scan.py  
 
- Exemple :
 
- scripts_scan/scan_ports.sh 192.168.1.140
+#Exécuter les scans   
+ - Lancer un scan des ports ouverts :  
 
- - Lancer l’analyse des résultats en Python :
+scripts_scan/scan_ports.sh <adresse_IP>  
 
-python3 scripts_scan/analyse_scan.py
+ Exemple :   
 
- - Les résultats sont stockés dans rapports/.
+ scripts_scan/scan_ports.sh 192.168.1.140  
 
-## D. Analyser les Logs pour Détecter les Intrusions
-**Réalisé par :** *Olivier*
+ - Lancer l’analyse des résultats en Python :  
+
+python3 scripts_scan/analyse_scan.py  
+
+ - Les résultats sont stockés dans rapports/.  
+
+## D. Analyser les Logs pour Détecter les Intrusions  
+**Réalisé par :** *Olivier*  
 
 Une autre tâche de sécurité consiste à analyser les fichiers de log pour identifier les signes d'une intrusion ou d'une tentative d'accès non autorisé. Le script suivant analyse les fichiers /var/log/auth.log et /var/log/syslog à la recherche de tentatives de connexion échouées.  
 
@@ -182,7 +182,7 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 │ └──────── Heure (0-23)  
 └────────── Minute (0-59)  
 
-1️⃣ Scan des ports
+1️⃣ Scan des ports  
 
 2 0 * * * bash ~/Projet_Scripting_Securite/scripts_scan/scan_ports.sh 192.168.1.1  
 
@@ -191,7 +191,7 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 🔧 Script utilisé : scan_ports.sh  
 ⚡ Exécution : Utilise bash pour exécuter le script.  
 
-2️⃣ Analyse des résultats du scan
+2️⃣ Analyse des résultats du scan  
 
 30 8 * * * python3 ~/Projet_Scripting_Securite/scripts/analyse_scan.py    
 
@@ -200,7 +200,7 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 🔧 Script utilisé : analyse_scan.py  
 ⚡ Exécution : Utilise python3.  
 
-3️⃣ Analyse des logs
+3️⃣ Analyse des logs  
 
 30 8 * * * python3 ~/Projet_Scripting_Securite/scripts_logs/analyse_logs.py  
 
@@ -209,7 +209,7 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 🔧 Script utilisé : analyse_logs.py  
 ⚡ Exécution : Utilise python3.  
 
-4️⃣ Surveillance des logs en temps réel
+4️⃣ Surveillance des logs en temps réel  
 
 30 8 * * * bash ~/Projet_Scripting_Securite/scripts_logs/surveillance_logs.sh  
 
@@ -218,16 +218,16 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 🔧 Script utilisé : surveillance_logs.sh  
 ⚡ Exécution : Utilise bash.  
 
-5️⃣ Sauvegarde des mots de passe
+5️⃣ Sauvegarde des mots de passe  
 
-30 9 * * * bash ~/Projet_Scripting_Securite/scripts_pwd/backup-passwords.sh
+30 9 * * * bash ~/Projet_Scripting_Securite/scripts_pwd/backup-passwords.sh  
 
 🕒 Exécuté tous les jours à 09h30  
 📌 Objectif : Sauvegarder une base de données ou un fichier contenant les mots de passe stockés de manière sécurisée.  
 🔧 Script utilisé : backup-passwords.sh  
 ⚡ Exécution : Utilise bash.  
 
-6️⃣ Gestionnaire de mots de passe
+6️⃣ Gestionnaire de mots de passe  
 
 30 9 * * * python3 ~/Projet_Scripting_Securite/scripts_pwd/password_manager.py  
 
