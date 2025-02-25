@@ -135,7 +135,29 @@ Dans ce projet, nous avons réparti les tâches de manière **équilibrée et co
 - Le PowerPoint a été conçu de manière collaborative,** en intégrant les explications de chaque partie.  
  
  
-## Utilisation des scripts 
+## Permissions des scripts
+
+
+### Permissions des scripts Bash 
+
+Avant d’exécuter les scripts Bash, il est nécessaire de leur donner les **droits d’exécution**.  
+Cela se fait avec la commande suivante :
+
+```bash
+chmod +x scripts_scan/scan_ports.sh
+chmod +x scripts_pwd/backup_passwords.sh
+chmod +x scripts_logs/surveillance_logs.sh
+```
+
+### Permissions des scripts Python
+
+```bash
+chmod +x scripts_scan/analyse_scan.py
+chmod +x scripts_pwd/password_manager.py
+chmod +x scripts_logs/analyse_logs.py
+```
+
+## Utilisation des scripts
 
 **1 - Scan des ports et services ouverts**
 
@@ -180,8 +202,9 @@ python3 scripts_pwd/password_manager.py
 ./scripts_pwd/backup_passwords.sh 
  
 
-Les sauvegardes sont stockées dans scripts_pwd/backups/. 
-
+- Les sauvegardes sont stockées dans scripts_pwd/backups/. 
+- Chaque sauvegarde est chiffrée et horodatée pour éviter toute perte de données.
+- L'éxecution automatique est gérée via cron (voir 📂 Automatisation avec Cron).
  
 
 **3 - Surveillance et analyse des logs de sécurité** 
@@ -202,14 +225,13 @@ python3 scripts_logs/analyse_logs.py
 
 **4 - Automatisation avec cron** 
 
-Les tâches critiques sont automatisées avec cron : 
+Afin de **protéger les mots de passe stockés**, une **sauvegarde automatique** est effectuée chaque jour à **3h du matin** :
 
-crontab -e 
- 
+```bash
+0 3 * * * /bin/bash /chemin/vers/scripts_pwd/backup_passwords.sh
+```
+Cela permet d’éviter toute perte accidentelle de données en cas de suppression involontaire ou de corruption du fichier.
 
-Ajoutez cette ligne pour une sauvegarde automatique des mots de passe chaque jour à 3h du matin : 
-
-0 3 * * * /bin/bash /chemin/vers/scripts_pwd/backup_passwords.sh 
 
 
 ## Conclusion 
