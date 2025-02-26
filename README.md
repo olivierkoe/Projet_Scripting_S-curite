@@ -79,6 +79,12 @@ python -m venv venv
 source venv/bin/activate  # Activation du venv  
 
 
+
+Exemple d'utilisation :  
+🌐 Site : gmail.com  
+👤 Identifiant : monemail@gmail.com  
+🔒 Mot de passe : MonSuperMotDePasse123!  
+
 Ensuite, nous avns installer les dépendances du projet : 
 
 pip install -r requirements.txt 
@@ -241,6 +247,7 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 2️⃣ Analyse des résultats du scan  
 
 30 8 * * * python3 ~/Projet_Scripting_Securite/scripts/analyse_scan.py    
+
 
 🕒 Exécuté tous les jours à 08h30  
 📌 Objectif : Analyser les résultats du scan des ports effectué à minuit. Il peut détecter des changements suspects.  
