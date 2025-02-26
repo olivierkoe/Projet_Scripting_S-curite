@@ -143,7 +143,7 @@ Dans ce projet, nous avons réparti les tâches de manière **équilibrée et co
 - Le PowerPoint a été conçu de manière collaborative,** en intégrant les explications de chaque partie.  
  
  
-## Utilisation des scripts 
+## 6️⃣ Utilisation des scripts 
 
 **1 - Scan des ports et services ouverts**
 
