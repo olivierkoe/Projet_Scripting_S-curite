@@ -283,7 +283,7 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 
 08:30       Analyse des logs pour repérer des attaques  
 
-08:30       Surveillance des logs en temps réel  
+02:00       Surveillance des logs en temps réel  
 
 02:00       Sauvegarde des mots de passe  
 
