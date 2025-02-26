@@ -5,13 +5,15 @@
 
 Ce projet vise à automatiser et sécuriser plusieurs aspects d'un système à l'aide de scripts en Bash et Python. Les fonctionnalités incluent : 
 
-* 🔍 Scan des ports et services ouverts 
+* 1 - Gestion et sauvegarde des mots de passe 
 
-* 🔑 Gestion et sauvegarde des mots de passe 
+* 2 - Scan des ports et services ouverts 
 
-* 📜 Surveillance et analyse des logs de sécurité 
 
-* 🛡️ Automatisation des tâches de sécurité avec cron 
+
+* 3 - Surveillance et analyse des logs de sécurité 
+
+* 4 - Automatisation des tâches de sécurité avec cron 
 
 
 ## 📂 Arborescence du Projet
@@ -115,8 +117,8 @@ Dans ce projet, nous avons réparti les tâches de manière **équilibrée et co
 
 | Tâche                                      | Responsable      |
 |-------------------------------------------|-----------------|
-| Scan des ports et services ouverts     | Olivier         |
-| Gestion sécurisée des mots de passe    | Nabiya          |
+| Gestion sécurisée des mots de passe     | Nabiya         |
+| Scan des ports et services ouverts    | Olivier          |
 | Analyse et surveillance des logs       | Nabiya          |
 | Automatisation des sauvegardes et sécurité | Olivier     |
 | Rédaction des README pour la doc       | Binôme          |
@@ -135,29 +137,7 @@ Dans ce projet, nous avons réparti les tâches de manière **équilibrée et co
 - Le PowerPoint a été conçu de manière collaborative,** en intégrant les explications de chaque partie.  
  
  
-## Permissions des scripts
-
-
-### Permissions des scripts Bash 
-
-Avant d’exécuter les scripts Bash, il est nécessaire de leur donner les **droits d’exécution**.  
-Cela se fait avec la commande suivante :
-
-```bash
-chmod +x scripts_scan/scan_ports.sh
-chmod +x scripts_pwd/backup_passwords.sh
-chmod +x scripts_logs/surveillance_logs.sh
-```
-
-### Permissions des scripts Python
-
-```bash
-chmod +x scripts_scan/analyse_scan.py
-chmod +x scripts_pwd/password_manager.py
-chmod +x scripts_logs/analyse_logs.py
-```
-
-## Utilisation des scripts
+## Utilisation des scripts 
 
 **1 - Scan des ports et services ouverts**
 
@@ -178,9 +158,9 @@ python3 scripts_scan/analyse_scan.py <adresse_ip>
 **2 - Gestion des mots de passe** 
 
 Ajouter un mot de passe : 
-
+```
 python3 scripts_pwd/password_manager.py 
- 
+
 
 ➡️ Sélectionnez "1. Ajouter un mot de passe", puis entrez : 
 
@@ -196,53 +176,167 @@ python3 scripts_pwd/password_manager.py
  
 
 ➡️ Sélectionnez "2. Récupérer un mot de passe" et entrez le site voulu. 
-
+```
 💾 Sauvegarde automatique : Un script Bash permet de sauvegarder la base de données chiffrée des mots de passe : 
-
+```
 ./scripts_pwd/backup_passwords.sh 
- 
+ ```
 
 - Les sauvegardes sont stockées dans scripts_pwd/backups/. 
 - Chaque sauvegarde est chiffrée et horodatée pour éviter toute perte de données.
 - L'éxecution automatique est gérée via cron (voir 📂 Automatisation avec Cron).
  
+**2 - Scan des ports et services ouverts**
+
+Bash : 
+```
+./scripts_scan/scan_ports.sh <adresse_ip> 
+ ```
+
+Python : 
+```
+python3 scripts_scan/analyse_scan.py <adresse_ip> 
+``` 
+
+*Résultat* : Les résultats seront enregistrés dans rapports/ sous la forme d’un fichier .txt. 
 
 **3 - Surveillance et analyse des logs de sécurité** 
 
 Surveillance en temps réel des échecs de connexion : 
-
+```
 ./scripts_logs/surveillance_logs.sh 
- 
+``` 
 
 Analyse des logs pour détecter les attaques : 
-
+```
 python3 scripts_logs/analyse_logs.py 
- 
+``` 
 
 📌 Rapport généré : rapports/analyse_logs_report.txt 
 
  
 
-**4 - Automatisation avec cron** 
+**4 - Automatisation des tâches de sécurité avec cron**   
+**Réalisé par :** *Olivier*  
 
-Afin de **protéger les mots de passe stockés**, une **sauvegarde automatique** est effectuée chaque jour à **3h du matin** :
+Une autre tâche de sécurité consiste à analyser les fichiers de log pour identifier les signes d'une intrusion ou d'une tentative d'accès non autorisé. Le script suivant analyse les fichiers /var/log/auth.log et /var/log/syslog à la recherche de tentatives de connexion échouées.  
 
-```bash
-0 3 * * * /bin/bash /chemin/vers/scripts_pwd/backup_passwords.sh
+* * * * * commande  
+│ │ │ │ │  
+│ │ │ │ └── Jour de la semaine (0-7, où 0 et 7 = Dimanche)  
+│ │ │ └──── Mois (1-12)  
+│ │ └────── Jour du mois (1-31)  
+│ └──────── Heure (0-23)  
+└────────── Minute (0-59)  
+
+1️⃣ Scan des ports  
+
+0 2 * * * bash ~/Projet_Scripting_Securite/scripts_scan/scan_ports.sh 192.168.1.1  
+
+🕒 Exécuté tous les jours à 02h00   
+📌 Objectif : Lancer un script de scan des ports sur l'adresse 192.168.1.1 pour identifier les ports ouverts sur ce réseau.  
+🔧 Script utilisé : scan_ports.sh  
+⚡ Exécution : Utilise bash pour exécuter le script.  
+
+2️⃣ Analyse des résultats du scan  
+
+30 8 * * * python3 ~/Projet_Scripting_Securite/scripts/analyse_scan.py    
+
+🕒 Exécuté tous les jours à 08h30  
+📌 Objectif : Analyser les résultats du scan des ports effectué à minuit. Il peut détecter des changements suspects.  
+🔧 Script utilisé : analyse_scan.py  
+⚡ Exécution : Utilise python3.  
+
+3️⃣ Analyse des logs  
+
+30 8 * * * python3 ~/Projet_Scripting_Securite/scripts_logs/analyse_logs.py  
+
+🕒 Exécuté tous les jours à 08h30  
+📌 Objectif : Analyser les journaux système (auth.log, syslog, etc.) pour repérer des anomalies comme des tentatives d'accès non autorisées.  
+🔧 Script utilisé : analyse_logs.py  
+⚡ Exécution : Utilise python3.  
+
+4️⃣ Surveillance des logs en temps réel  
+
+0 2 * * * bash ~/Projet_Scripting_Securite/scripts_logs/surveillance_logs.sh  
+
+🕒 Exécuté tous les jours à 02h00  
+📌 Objectif : Lancer un processus de surveillance continue des logs pour détecter en temps réel des événements de sécurité (échecs de connexion, attaques brute-force, etc.).  
+🔧 Script utilisé : surveillance_logs.sh  
+⚡ Exécution : Utilise bash.  
+
+5️⃣ Sauvegarde des mots de passe  
+
+0 2 * * * bash ~/Projet_Scripting_Securite/scripts_pwd/backup-passwords.sh  
+
+🕒 Exécuté tous les jours à 02h00  
+📌 Objectif : Sauvegarder une base de données ou un fichier contenant les mots de passe stockés de manière sécurisée.  
+🔧 Script utilisé : backup-passwords.sh  
+⚡ Exécution : Utilise bash.  
+
+6️⃣ Gestionnaire de mots de passe  
+
+30 8 * * * python3 ~/Projet_Scripting_Securite/scripts_pwd/password_manager.py  
+
+🕒 Exécuté tous les jours à 08h30  
+📌 Objectif : Vérifier, gérer ou mettre à jour les mots de passe enregistrés. Il peut inclure des alertes pour des mots de passe faibles ou compromis.  
+🔧 Script utilisé : password_manager.py  
+⚡ Exécution : Utilise python3.  
+
+📌 En résumé :    
+
+🕒 Heure    📌 Tâche   
+
+02:00       Scan des ports sur 192.168.1.1  
+
+08:30       Analyse des scans pour détecter des anomalies  
+
+08:30       Analyse des logs pour repérer des attaques  
+
+02:00       Surveillance des logs en temps réel  
+
+02:00       Sauvegarde des mots de passe  
+
+08:30       Gestion des mots de passe
+
+### Pour vérifier que tout est bien pris en compte, nous pouvons :
+
+- Lister les tâches Cron configurées sur notre machine en tapant :
+
+
 ```
-Cela permet d’éviter toute perte accidentelle de données en cas de suppression involontaire ou de corruption du fichier.
+crontab -l
+```
+→ Cela affichera toutes les tâches planifiées.
 
+- Vérifier que les bonnes commandes sont bien présentes (avec les chemins corrects) :
 
+```
+0 2 * * * /bin/bash /chemin/vers/scripts_scan/scan_ports.sh <adresse_IP>
+0 2 * * * /bin/bash /chemin/vers/scripts_logs/surveillance_logs.sh
+0 2 * * * /bin/bash /chemin/vers/scripts_pwd/backup_passwords.sh
+
+30 8 * * * /usr/bin/python3 /chemin/vers/scripts_scan/analyse_scan.py <adresse_IP>
+30 8 * * * /usr/bin/python3 /chemin/vers/scripts_logs/analyse_logs.py
+30 8 * * * /usr/bin/python3 /chemin/vers/scripts_pwd/password_manager.py
+```
+
+- Vérifier que les scripts s’exécutent bien dans les logs système :
+
+```
+cat /var/log/syslog | grep CRON
+```
+→ Cela affichera les exécutions passées des tâches cron.
 
 ## Conclusion 
 
 Ce projet fournit des outils essentiels pour : 
 
-Améliorer la sécurité du système. 
+- Améliorer la sécurité du système. 
 
-Automatiser des tâches critiques. 
+- Automatiser des tâches critiques. 
 
-Détecter les intrusions et attaques potentielles. 
+- Détecter les intrusions et attaques potentielles. 
 
 ## Possibles améliorations : 
 
