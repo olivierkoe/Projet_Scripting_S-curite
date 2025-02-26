@@ -176,15 +176,17 @@ Nom du site
 
 Identifiant 
 
-Mot de passe 
+Mot de passe
+``` 
 
 Récupérer un mot de passe : 
-
+```
 python3 scripts_pwd/password_manager.py 
  
 
 ➡️ Sélectionnez "2. Récupérer un mot de passe" et entrez le site voulu. 
 ```
+
 💾 Sauvegarde automatique : Un script Bash permet de sauvegarder la base de données chiffrée des mots de passe : 
 ```
 ./scripts_pwd/backup_passwords.sh 

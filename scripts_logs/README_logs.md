@@ -83,6 +83,34 @@ ssh faux_utilisateur@localhost
 
 🔎 **Vérification** : Vérifier que **l’IP du terminal utilisé** s’affiche bien en cas de tentatives d’accès infructueuses.  
 
+### 🛡️ Protection contre les attaques par force brute avec Fail2Ban
+
+Pour éviter les tentatives de connexion répétées par force brute sur SSH, nous avons configuré **Fail2Ban** afin de bloquer automatiquement les adresses IP après plusieurs échecs de connexion.
+
+#### ✔ Configuration  
+Nous avons activé **Fail2Ban** et défini une règle pour bannir une IP après **3 tentatives échouées**.
+
+#### ✔ Résultat attendu  
+- Lorsqu'un attaquant tente d'entrer plusieurs mauvais mots de passe, son IP est ajoutée à la liste des adresses bannies.  
+- La commande suivante permet de voir les IP bannies :  
+  ```bash
+  sudo fail2ban-client status sshd
+  ```
+✔ Exemple d'IP bannie
+bash
+```
+Banned IP list:
+- 192.168.1.100
+```
+
+💡 Remarque
+Si une IP a été bannie par erreur, elle peut être débloquée avec :
+
+bash
+```
+sudo fail2ban-client set sshd unbanip <adresse_IP>
+```
+
 ---
 
 ## 📌 Conclusion et pertinence par rapport à la cybersécurité  
