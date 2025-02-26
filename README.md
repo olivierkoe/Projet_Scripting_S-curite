@@ -5,13 +5,15 @@
 
 Ce projet vise à automatiser et sécuriser plusieurs aspects d'un système à l'aide de scripts en Bash et Python. Les fonctionnalités incluent : 
 
-* 🔍 Scan des ports et services ouverts 
+* 1 - Gestion et sauvegarde des mots de passe 
 
-* 🔑 Gestion et sauvegarde des mots de passe 
+* 2 - Scan des ports et services ouverts 
 
-* 📜 Surveillance et analyse des logs de sécurité 
 
-* 🛡️ Automatisation des tâches de sécurité avec cron 
+
+* 3 - Surveillance et analyse des logs de sécurité 
+
+* 4 - Automatisation des tâches de sécurité avec cron 
 
 
 ## 📂 Arborescence du Projet
@@ -121,8 +123,8 @@ Dans ce projet, nous avons réparti les tâches de manière **équilibrée et co
 
 | Tâche                                      | Responsable      |
 |-------------------------------------------|-----------------|
-| Scan des ports et services ouverts     | Olivier         |
-| Gestion sécurisée des mots de passe    | Nabiya          |
+| Gestion sécurisée des mots de passe     | Nabiya         |
+| Scan des ports et services ouverts    | Olivier          |
 | Analyse et surveillance des logs       | Nabiya          |
 | Automatisation des sauvegardes et sécurité | Olivier     |
 | Rédaction des README pour la doc       | Binôme          |
@@ -162,9 +164,9 @@ python3 scripts_scan/analyse_scan.py <adresse_ip>
 **2 - Gestion des mots de passe** 
 
 Ajouter un mot de passe : 
-
+```
 python3 scripts_pwd/password_manager.py 
- 
+
 
 ➡️ Sélectionnez "1. Ajouter un mot de passe", puis entrez : 
 
@@ -180,27 +182,41 @@ python3 scripts_pwd/password_manager.py
  
 
 ➡️ Sélectionnez "2. Récupérer un mot de passe" et entrez le site voulu. 
-
+```
 💾 Sauvegarde automatique : Un script Bash permet de sauvegarder la base de données chiffrée des mots de passe : 
-
+```
 ./scripts_pwd/backup_passwords.sh 
- 
+ ```
 
-Les sauvegardes sont stockées dans scripts_pwd/backups/. 
-
+- Les sauvegardes sont stockées dans scripts_pwd/backups/. 
+- Chaque sauvegarde est chiffrée et horodatée pour éviter toute perte de données.
+- L'éxecution automatique est gérée via cron (voir 📂 Automatisation avec Cron).
  
+**2 - Scan des ports et services ouverts**
+
+Bash : 
+```
+./scripts_scan/scan_ports.sh <adresse_ip> 
+ ```
+
+Python : 
+```
+python3 scripts_scan/analyse_scan.py <adresse_ip> 
+``` 
+
+*Résultat* : Les résultats seront enregistrés dans rapports/ sous la forme d’un fichier .txt. 
 
 **3 - Surveillance et analyse des logs de sécurité** 
 
 Surveillance en temps réel des échecs de connexion : 
-
+```
 ./scripts_logs/surveillance_logs.sh 
- 
+``` 
 
 Analyse des logs pour détecter les attaques : 
-
+```
 python3 scripts_logs/analyse_logs.py 
- 
+``` 
 
 📌 Rapport généré : rapports/analyse_logs_report.txt 
 
@@ -231,6 +247,7 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 2️⃣ Analyse des résultats du scan  
 
 30 8 * * * python3 ~/Projet_Scripting_Securite/scripts/analyse_scan.py    
+
 
 🕒 Exécuté tous les jours à 08h30  
 📌 Objectif : Analyser les résultats du scan des ports effectué à minuit. Il peut détecter des changements suspects.  
@@ -289,17 +306,44 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 
 08:30       Gestion des mots de passe
 
+### Pour vérifier que tout est bien pris en compte, nous pouvons :
 
+- Lister les tâches Cron configurées sur notre machine en tapant :
+
+
+```
+crontab -l
+```
+→ Cela affichera toutes les tâches planifiées.
+
+- Vérifier que les bonnes commandes sont bien présentes (avec les chemins corrects) :
+
+```
+0 2 * * * /bin/bash /chemin/vers/scripts_scan/scan_ports.sh <adresse_IP>
+0 2 * * * /bin/bash /chemin/vers/scripts_logs/surveillance_logs.sh
+0 2 * * * /bin/bash /chemin/vers/scripts_pwd/backup_passwords.sh
+
+30 8 * * * /usr/bin/python3 /chemin/vers/scripts_scan/analyse_scan.py <adresse_IP>
+30 8 * * * /usr/bin/python3 /chemin/vers/scripts_logs/analyse_logs.py
+30 8 * * * /usr/bin/python3 /chemin/vers/scripts_pwd/password_manager.py
+```
+
+- Vérifier que les scripts s’exécutent bien dans les logs système :
+
+```
+cat /var/log/syslog | grep CRON
+```
+→ Cela affichera les exécutions passées des tâches cron.
 
 ## Conclusion 
 
 Ce projet fournit des outils essentiels pour : 
 
-Améliorer la sécurité du système. 
+- Améliorer la sécurité du système. 
 
-Automatiser des tâches critiques. 
+- Automatiser des tâches critiques. 
 
-Détecter les intrusions et attaques potentielles. 
+- Détecter les intrusions et attaques potentielles. 
 
 ## Possibles améliorations : 
 
