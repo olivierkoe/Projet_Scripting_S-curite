@@ -147,7 +147,9 @@ Dans ce projet, nous avons réparti les tâches de manière **équilibrée et co
  
 
 **1 - Gestion des mots de passe** 
+
 **Réalisé par :** *Nabiya* 
+
 Ajouter un mot de passe : 
 ```
 python3 scripts_pwd/password_manager.py 
@@ -178,6 +180,7 @@ python3 scripts_pwd/password_manager.py
 - L'éxecution automatique est gérée via cron (voir 📂 Automatisation avec Cron).
  
 **2 - Scan des ports et services ouverts**
+
 **Réalisé par :** *Olivier* 
 Bash : 
 ```
@@ -191,8 +194,10 @@ python3 scripts_scan/analyse_scan.py <adresse_ip>
 
 *Résultat* : Les résultats seront enregistrés dans rapports/ sous la forme d’un fichier .txt. 
 
-**3 - Surveillance et analyse des logs de sécurité** 
+**3 - Surveillance et analyse des logs de sécurité**
+
 **Réalisé par :** *Nabiya* 
+
 Surveillance en temps réel des échecs de connexion : 
 ```
 ./scripts_logs/surveillance_logs.sh 
@@ -207,7 +212,8 @@ python3 scripts_logs/analyse_logs.py
 
  
 
-**4 - Automatisation des tâches de sécurité avec cron**   
+**4 - Automatisation des tâches de sécurité avec cron**
+
 **Réalisé par :** *Olivier*  
 
 Une autre tâche de sécurité consiste à analyser les fichiers de log pour identifier les signes d'une intrusion ou d'une tentative d'accès non autorisé. Le script suivant analyse les fichiers /var/log/auth.log et /var/log/syslog à la recherche de tentatives de connexion échouées.  
