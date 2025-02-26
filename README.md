@@ -206,7 +206,7 @@ python3 scripts_logs/analyse_logs.py
 
  
 
-## D. Analyser les Logs pour Détecter les Intrusions  
+##4  Automatisation des tâches de sécurité avec cron  
 **Réalisé par :** *Olivier*  
 
 Une autre tâche de sécurité consiste à analyser les fichiers de log pour identifier les signes d'une intrusion ou d'une tentative d'accès non autorisé. Le script suivant analyse les fichiers /var/log/auth.log et /var/log/syslog à la recherche de tentatives de connexion échouées.  
