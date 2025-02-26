@@ -148,14 +148,14 @@ Dans ce projet, nous avons réparti les tâches de manière **équilibrée et co
 **1 - Scan des ports et services ouverts**
 
 Bash : 
-
+```
 ./scripts_scan/scan_ports.sh <adresse_ip> 
- 
+``` 
 
 Python : 
-
+```
 python3 scripts_scan/analyse_scan.py <adresse_ip> 
- 
+``` 
 
 *Résultat* : Les résultats seront enregistrés dans rapports/ sous la forme d’un fichier .txt. 
 
@@ -226,7 +226,7 @@ python3 scripts_logs/analyse_logs.py
 **Réalisé par :** *Olivier*  
 
 Une autre tâche de sécurité consiste à analyser les fichiers de log pour identifier les signes d'une intrusion ou d'une tentative d'accès non autorisé. Le script suivant analyse les fichiers /var/log/auth.log et /var/log/syslog à la recherche de tentatives de connexion échouées.  
-
+```
 * * * * * commande  
 │ │ │ │ │  
 │ │ │ │ └── Jour de la semaine (0-7, où 0 et 7 = Dimanche)  
@@ -234,20 +234,20 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 │ │ └────── Jour du mois (1-31)  
 │ └──────── Heure (0-23)  
 └────────── Minute (0-59)  
-
+```
 1️⃣ Scan des ports  
-
+```
 0 2 * * * bash ~/Projet_Scripting_Securite/scripts_scan/scan_ports.sh 192.168.1.1  
-
+```
 🕒 Exécuté tous les jours à 02h00   
 📌 Objectif : Lancer un script de scan des ports sur l'adresse 192.168.1.1 pour identifier les ports ouverts sur ce réseau.  
 🔧 Script utilisé : scan_ports.sh  
 ⚡ Exécution : Utilise bash pour exécuter le script.  
 
 2️⃣ Analyse des résultats du scan  
-
+```
 30 8 * * * python3 ~/Projet_Scripting_Securite/scripts/analyse_scan.py    
-
+```
 
 🕒 Exécuté tous les jours à 08h30  
 📌 Objectif : Analyser les résultats du scan des ports effectué à minuit. Il peut détecter des changements suspects.  
@@ -255,36 +255,36 @@ Une autre tâche de sécurité consiste à analyser les fichiers de log pour ide
 ⚡ Exécution : Utilise python3.  
 
 3️⃣ Analyse des logs  
-
+```
 30 8 * * * python3 ~/Projet_Scripting_Securite/scripts_logs/analyse_logs.py  
-
+```
 🕒 Exécuté tous les jours à 08h30  
 📌 Objectif : Analyser les journaux système (auth.log, syslog, etc.) pour repérer des anomalies comme des tentatives d'accès non autorisées.  
 🔧 Script utilisé : analyse_logs.py  
 ⚡ Exécution : Utilise python3.  
 
 4️⃣ Surveillance des logs en temps réel  
-
+```
 0 2 * * * bash ~/Projet_Scripting_Securite/scripts_logs/surveillance_logs.sh  
-
+```
 🕒 Exécuté tous les jours à 02h00  
 📌 Objectif : Lancer un processus de surveillance continue des logs pour détecter en temps réel des événements de sécurité (échecs de connexion, attaques brute-force, etc.).  
 🔧 Script utilisé : surveillance_logs.sh  
 ⚡ Exécution : Utilise bash.  
 
 5️⃣ Sauvegarde des mots de passe  
-
+```
 0 2 * * * bash ~/Projet_Scripting_Securite/scripts_pwd/backup-passwords.sh  
-
+```
 🕒 Exécuté tous les jours à 02h00  
 📌 Objectif : Sauvegarder une base de données ou un fichier contenant les mots de passe stockés de manière sécurisée.  
 🔧 Script utilisé : backup-passwords.sh  
 ⚡ Exécution : Utilise bash.  
 
 6️⃣ Gestionnaire de mots de passe  
-
+```
 30 8 * * * python3 ~/Projet_Scripting_Securite/scripts_pwd/password_manager.py  
-
+```
 🕒 Exécuté tous les jours à 08h30  
 📌 Objectif : Vérifier, gérer ou mettre à jour les mots de passe enregistrés. Il peut inclure des alertes pour des mots de passe faibles ou compromis.  
 🔧 Script utilisé : password_manager.py  
