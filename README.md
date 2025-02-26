@@ -144,25 +144,10 @@ Dans ce projet, nous avons réparti les tâches de manière **équilibrée et co
  
  
 ## 6️⃣ Utilisation des scripts 
-
-**1 - Scan des ports et services ouverts**
-
-Bash : 
-```
-./scripts_scan/scan_ports.sh <adresse_ip> 
-``` 
-
-Python : 
-```
-python3 scripts_scan/analyse_scan.py <adresse_ip> 
-``` 
-
-*Résultat* : Les résultats seront enregistrés dans rapports/ sous la forme d’un fichier .txt. 
-
  
 
-**2 - Gestion des mots de passe** 
-
+**1 - Gestion des mots de passe** 
+**Réalisé par :** *Nabiya* 
 Ajouter un mot de passe : 
 ```
 python3 scripts_pwd/password_manager.py 
@@ -193,7 +178,7 @@ python3 scripts_pwd/password_manager.py
 - L'éxecution automatique est gérée via cron (voir 📂 Automatisation avec Cron).
  
 **2 - Scan des ports et services ouverts**
-
+**Réalisé par :** *Olivier* 
 Bash : 
 ```
 ./scripts_scan/scan_ports.sh <adresse_ip> 
@@ -207,7 +192,7 @@ python3 scripts_scan/analyse_scan.py <adresse_ip>
 *Résultat* : Les résultats seront enregistrés dans rapports/ sous la forme d’un fichier .txt. 
 
 **3 - Surveillance et analyse des logs de sécurité** 
-
+**Réalisé par :** *Nabiya* 
 Surveillance en temps réel des échecs de connexion : 
 ```
 ./scripts_logs/surveillance_logs.sh 
