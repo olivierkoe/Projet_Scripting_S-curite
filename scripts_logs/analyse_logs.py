@@ -12,8 +12,8 @@ if not os.path.exists(log_file):
     print(f"❌ Erreur : Le fichier {log_file} n'existe pas.")
     exit(1)
 
-# Expression régulière mise à jour pour capturer IPv4 et IPv6
-pattern = r"Failed password for (?:invalid user )?(\S+) from ([\d\.:a-fA-F]+) port"
+# Expression régulière améliorée pour capturer les utilisateurs et adresses IP
+pattern = r"Failed password for (?:invalid user )?(\S+) from ([\d\.:a-fA-F]+)"
 
 # Dictionnaire pour stocker les tentatives échouées
 failed_attempts = {}
@@ -26,6 +26,7 @@ with open(log_file, "r") as file:
             user = match.group(1)  # L’utilisateur utilisé (ou "invalid user")
             ip = match.group(2)    # L’adresse IP (IPv4 ou IPv6)
             failed_attempts[ip] = failed_attempts.get(ip, 0) + 1
+            print(f"📝 Détection : {user} - {ip}")  # Debugging pour voir les IP extraites
 
 # Générer un rapport des IP suspectes
 with open(output_file, "w") as report:
