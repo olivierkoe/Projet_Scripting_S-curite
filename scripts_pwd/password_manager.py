@@ -3,6 +3,7 @@
 import os
 import json
 import re
+import getpass  # 🛠️ Ajout de l'import pour `getpass`
 from cryptography.fernet import Fernet
 
 # 📂 Dossiers pour les fichiers sécurisés
@@ -23,7 +24,7 @@ def load_or_generate_key():
     else:
         with open(key_file, "rb") as f:
             key = f.read()
-    return Fernet(key)
+    return key  # 🛠️ Retourne la clé brute, pas l'objet Fernet
 
 # 🔒 Chiffrement et déchiffrement
 def encrypt_data(data, cipher):
@@ -73,18 +74,25 @@ def add_password(site, username, password, cipher):
     print(f"✅ Mot de passe sécurisé enregistré pour {site}.")
 
 # 🔓 Récupérer un mot de passe
-def get_password(site, cipher):
-    passwords = load_passwords(cipher)
-    if site in passwords:
-        print(f"🔑 Identifiant : {passwords[site]['username']}")
-        print(f"🔒 Mot de passe : {passwords[site]['password']}")
-    else:
-        print("❌ Aucun mot de passe trouvé.")
+def get_password(site):
+    # 🔑 Demande la clé à l'utilisateur au moment du déchiffrement
+    user_key = getpass.getpass("🔐 Entrez votre clé de chiffrement pour récupérer le mot de passe : ").encode()
+
+    try:
+        cipher = Fernet(user_key)  # Vérifie si la clé est correcte
+        passwords = load_passwords(cipher)
+
+        if site in passwords:
+            print(f"🔑 Identifiant : {passwords[site]['username']}")
+            print(f"🔒 Mot de passe : {passwords[site]['password']}")
+        else:
+            print("❌ Aucun mot de passe trouvé pour ce site.")
+    
+    except:
+        print("❌ Clé invalide. Impossible de récupérer le mot de passe.")
 
 # 🔽 Interface utilisateur
 def main():
-    cipher = load_or_generate_key()
-
     print("\n🔐 Gestionnaire de mots de passe")
     print("1. Ajouter un mot de passe")
     print("2. Récupérer un mot de passe")
@@ -93,6 +101,10 @@ def main():
     if choix == "1":
         site = input("🌐 Site : ")
         username = input("👤 Identifiant : ")
+
+        # 🔑 Charge la clé de chiffrement avant d'ajouter un mot de passe
+        key = load_or_generate_key()
+        cipher = Fernet(key)
 
         # 🔄 Demander un mot de passe robuste
         print("\n🔒 **Règles du mot de passe sécurisé** :")
@@ -115,7 +127,7 @@ def main():
 
     elif choix == "2":
         site = input("🌐 Site : ")
-        get_password(site, cipher)
+        get_password(site)  # 🔑 La clé sera demandée dans `get_password()`
 
     else:
         print("❌ Choix invalide.")
