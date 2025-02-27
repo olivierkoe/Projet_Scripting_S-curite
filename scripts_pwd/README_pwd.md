@@ -28,6 +28,7 @@ En complément, un script Bash est utilisé pour automatiser la sauvegarde de ce
 
 #### 📌 Récupération d'un mot de passe :
 1. L'utilisateur saisit le nom du site pour lequel il veut récupérer ses identifiants.
+2. L'utilisateur doit saisir manuellement la clé de chiffrement.
 2. Le programme **déchiffre les données** et affiche l’identifiant et le mot de passe associés.
 
 #### 🔹 Résultat attendu :
